@@ -336,6 +336,11 @@ body::after {
   font-weight: 500;
 }
 
+.regret-highlight {
+  color: var(--stamp-red);
+  font-weight: 800;
+}
+
 .letter-body .sign-off {
   margin-top: 25px;
   font-size: 13px;

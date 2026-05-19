@@ -1,7 +1,7 @@
 let currentScene = 'gloom';
 
 const rejectionComments = [
-  "Thank you for your interest in joining the Malhar 2026 Computers Department as a volunteer. We received an exceptionally high volume of applications this year, and after a thorough review of all profiles, we regret to inform you that we are unable to offer you a position at this time. We sincerely appreciate your time, effort, and interest in Malhar, and we wish you the very best in your future endeavors."
+  "Thank you for your interest in joining the Malhar 2026 Computers Department as a volunteer. We received an exceptionally high volume of applications this year, and after a thorough review of all profiles, <span class=\"regret-highlight\">we regret to inform</span> you that we are unable to offer you a position at this time. We sincerely appreciate your time, effort, and interest in Malhar, and we wish you the very best in your future endeavors."
 ];
 
 const acceptanceQuotes = [
