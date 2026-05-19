@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malhar 2026 — Computers Volunteer Announcement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Luckiest+Guy&family=Outfit:wght@400;600;800&family=Rubik+Mono+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <svg class="svg-filters" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+    <defs>
+      <filter id="wobble-1">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="1" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="wobble-2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="wobble-3">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <pattern id="halftone" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"
+        patternTransform="rotate(45)">
+        <circle cx="2" cy="2" r="2" fill="rgba(0,0,0,0.15)" />
+      </pattern>
+    </defs>
+  </svg>
+
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-hand">
+      <svg viewBox="0 0 100 100" fill="currentColor">
+        <path
+          d="M50 80 C40 80, 20 70, 20 50 C20 30, 30 15, 45 10 C48 9, 52 9, 55 10 C62 13, 62 25, 62 30 C68 30, 72 32, 74 36 C78 37, 81 40, 82 45 C85 47, 86 52, 85 57 C82 68, 65 80, 50 80 Z"
+          fill="#e8cbcf" stroke="#0b011c" stroke-width="6" />
+        <path d="M40 30 C40 20, 48 10, 50 10 C52 10, 53 20, 50 30" fill="none" stroke="#0b011c" stroke-width="4"
+          stroke-linecap="round" />
+        <path d="M45 68 C48 70, 52 70, 55 68" fill="none" stroke="#0b011c" stroke-width="4" />
+      </svg>
+    </div>
+  </div>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <main class="comic-frame-container">
+
+    <header class="app-header">
+      <div class="logo-badge wobble-animate">
+        <span class="logo-text">MALHAR '26</span>
+        <span class="dept-tag">COMPUTERS</span>
+      </div>
+    </header>
+
+    <section class="scene scene-active" id="sceneGloom">
+      <div class="gloom-cloud cloud-left">
+        <svg viewBox="0 0 200 100" class="svg-cloud">
+          <path d="M30 65 A30 30 0 0 1 80 40 A45 45 0 0 1 155 45 A30 30 0 0 1 180 75 Z" fill="#2d2a45" />
+        </svg>
+      </div>
+      <div class="gloom-cloud cloud-right">
+        <svg viewBox="0 0 200 100" class="svg-cloud">
+          <path d="M30 65 A30 30 0 0 1 80 40 A45 45 0 0 1 155 45 A30 30 0 0 1 180 75 Z" fill="#2d2a45" />
+        </svg>
+      </div>
+
+      <div class="speech-bubble wobble-animate-slow" id="hintBubble">
+        Wait... did you get your selection letter? Check below!
+      </div>
+
+      <div class="letter-container-wrapper">
+        <div class="rejection-letter wobble-animate-slow" id="rejectionLetter" draggable="false">
+          <div class="letter-stamp">
+            <svg viewBox="0 0 120 120" class="svg-stamp">
+              <rect x="5" y="5" width="110" height="110" rx="10" fill="none" stroke="#d13b5a" stroke-width="6"
+                stroke-dasharray="10 5" />
+              <text x="50%" y="45%" text-anchor="middle" font-family="'Luckiest Guy'" font-size="20" fill="#d13b5a"
+                transform="rotate(-12 60 60)">SORRY!</text>
+              <text x="50%" y="75%" text-anchor="middle" font-family="'Fredoka'" font-weight="700" font-size="11"
+                fill="#d13b5a" transform="rotate(-12 60 60)">MALHAR DEPT</text>
+            </svg>
+          </div>
+
+          <div class="letter-paper-content">
+            <h2 class="letter-title">REGRET INTIMATION</h2>
+            <div class="letter-meta">
+              <span>Ref: MAL/26/COMP/999</span>
+              <span>Date: May 19, 2026</span>
+            </div>
+
+            <div class="letter-body">
+              <p class="greeting">Dear Hopeful Candidate,</p>
+              <p class="body-text" id="rejectionBodyText">
+                Thank you for your interest in joining the Malhar 2026 Computers Department as a volunteer. We received
+                an exceptionally high volume of applications this year, and after a thorough review of all profiles, we
+                regret to inform you that we are unable to offer you a position at this time.
+              </p>
+              <p class="body-text">
+                We sincerely appreciate your time, effort, and interest in Malhar, and we wish you the very best in your
+                future endeavors.
+              </p>
+              <p class="sign-off">
+                Sincerely,<br>
+                <strong>Selection Committee</strong><br>
+                <span>Malhar Computers Department</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="decor-stripes"></div>
+        </div>
+      </div>
+
+      <div class="drag-instructions wobble-animate" id="dragInstructions">
+        DRAG IT INTO THE VORTEX TO DISCARD YOUR TEARS!
+      </div>
+
+      <div class="portal-container" id="portalContainer">
+        <div class="portal-badge">VORTEX OF TEARS</div>
+
+        <div class="portal-gloop" id="portalGloop">
+          <div class="portal-spiral-bg"></div>
+
+          <div class="gloop-eyes">
+            <div class="gloop-eye eye-left" id="eyeLeft">
+              <div class="gloop-pupil" id="pupilLeft"></div>
+            </div>
+            <div class="gloop-eye eye-right" id="eyeRight">
+              <div class="gloop-pupil" id="pupilRight"></div>
+            </div>
+          </div>
+
+          <div class="gloop-mouth" id="gloopMouth">
+            <div class="gloop-teeth"></div>
+            <div class="gloop-throat"></div>
+          </div>
+        </div>
+
+        <div class="portal-sticker sticker-hazard">DANGER</div>
+        <div class="portal-sticker sticker-trash">TRASH HERE</div>
+      </div>
+    </section>
+
+    <section class="scene" id="sceneAcceptance">
+      <div class="celebration-vibe-container">
+
+        <div class="burst-title-container">
+          <h1 class="burst-title text-pop-up" id="revealTitle">PLOT TWIST!</h1>
+          <h2 class="burst-subtitle text-pop-up-delayed">YOU ARE SELECTED!</h2>
+        </div>
+
+        <div class="golden-ticket-container">
+          <div class="golden-ticket" id="goldenTicket">
+            <div class="ticket-face ticket-front">
+              <div class="ticket-ribbon">COMPUTERS DEPT</div>
+              <div class="ticket-body">
+                <div class="ticket-glow-effect"></div>
+                <div class="ticket-header">
+                  <span class="malhar-year">MALHAR 2026</span>
+                  <span class="ticket-serial">#001-VOL-COMP</span>
+                </div>
+
+                <h3 class="selection-heading">GOLDEN TICKET</h3>
+
+                <div class="selected-user-box">
+                  <span class="user-label">OFFICIALLY SELECTED</span>
+                  <div class="user-name-text">VOLUNTEER</div>
+                </div>
+
+                <p class="acceptance-quote" id="acceptanceQuote">
+                  "Welcome to the chaos! Prepare your terminals, fuel up on caffeine, and see you behind the scenes!"
+                </p>
+
+                <div class="ticket-footer">
+                  <div class="barcode">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <div class="stamp-approved">APPROVED</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-face ticket-back">
+              <div class="back-pattern"></div>
+              <div class="back-content">
+                <h3>THE RULES OF CHAOS</h3>
+                <ul>
+                  <li>Never push to main on event day</li>
+                  <li>Caffeine levels must not drop below 80%</li>
+                  <li>Worship the keyboard gods daily</li>
+                </ul>
+                <div class="back-logo">MALHAR COMP '26</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acceptance-controls">
+          <p class="interaction-prompt wobble-animate">CLICK THE TICKET TO FLIP IT!</p>
+
+          <a href="https://chat.whatsapp.com/LFhWHOPAoBu8IeINyoGkV6" target="_blank"
+            class="whatsapp-btn wobble-animate-slow">
+            JOIN THE VOLUNTEER WHATSAPP GROUP
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
