@@ -28,6 +28,20 @@ if (rejectionBodyText) {
   rejectionBodyText.innerHTML = rejectionComments[0];
 }
 
+if (localStorage.getItem('volunteer_selected') === 'true') {
+  currentScene = 'acceptance';
+  sceneGloom.classList.remove('scene-active');
+  sceneAcceptance.classList.add('scene-active');
+  const comicContainer = document.querySelector('.comic-frame-container');
+  if (comicContainer) {
+    comicContainer.style.background = 'radial-gradient(circle at center, #2e0854 0%, var(--bg-dark-abyss) 100%)';
+  }
+  const acceptanceQuote = document.getElementById('acceptanceQuote');
+  if (acceptanceQuote) {
+    acceptanceQuote.innerHTML = acceptanceQuotes[Math.floor(Math.random() * acceptanceQuotes.length)];
+  }
+}
+
 let lastMouseX = 0;
 let lastMouseY = 0;
 let mouseSpeedX = 0;
@@ -416,6 +430,7 @@ function trackEyes(targetX, targetY) {
 
 function launchTransformation(burstX, burstY) {
   currentScene = 'transition';
+  localStorage.setItem('volunteer_selected', 'true');
 
   const comicContainer = document.querySelector('.comic-frame-container');
   comicContainer.classList.add('wobble-animate');
